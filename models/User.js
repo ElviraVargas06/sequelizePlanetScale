@@ -1,20 +1,23 @@
-import Sequelize from "sequelize" 
+import {DataTypes } from "sequelize"
+import db from "../database/db.js"
+//import bcryptjs from "bcryptjs"
 
-const {Model, DataTypes} = Sequelize
 
-const User = db.define('user', {
+export const User = db.define('users', {
     
     email:{
         type: DataTypes.STRING,
-        unique: true,        
+        unique: true,  
+        notEmpty: true,      
     },
 
     password:{
         type: DataTypes.STRING,
-        validate: {
-            is: /^[0-9a-f]{64}$/i
-          }
-    }
- })
+        notEmpty: true,
+       
+    },
+ });
+
  
- export const Usuario = model("usuario", User)
+
+ 

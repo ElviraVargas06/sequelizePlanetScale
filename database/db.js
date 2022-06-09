@@ -14,3 +14,4 @@ try{
     console.log("Error al conectarsea la base de dato:", error)
   }
   
+  export default db
