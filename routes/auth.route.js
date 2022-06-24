@@ -1,46 +1,28 @@
 import {Router} from "express"
-import { login, register } from "../controllers/auth.controller.js"
-import {body} from "express-validator"
-import { validationResultExpress } from "../middlewares/validationResultExpress.js"
-const router = Router()
+import {   infoUser,
+    login,
+    logout,
+    refreshToken,
+    register,} from "../controllers/auth.controller.js"
 
+import { requireRefreshToken } from "../middlewares/requireRefreshToken.js";
+import { requireToken } from "../middlewares/requireToken.js";
+import {
+    loginValidator,
+    registerValidator,
+    tokenCookieValidator,
+    tokenHeaderValidator,
+} from "../middlewares/validatorManager.js";
 
-router.post(
-     "/register", 
-            [
-                body("email", "Formato de email es incorrecto")                    
-                    .isEmail()                    
-                    .normalizeEmail(),
-                body("password", "Error Minimo debe contener la contraseña 6 carácteres")                    
-                    .isLength({
-                        min:6
-                    }),
-                body("password", "Formato de contraseña incorrecta")                   
-                    .custom((value, {req})=>{
-                        if(value !== req.body.repassword){
-                            throw new Error("No coinciden las contraseñas")
-                        }
-                        return value
-                    }
-                ),
-            ],
-            validationResultExpress,
-            register
-    )
+const router = Router();
 
-router.post(
-        "/login",
-        [ 
-            body("email", "Formato de email es incorrecto")
-                .trim()
-                .isEmail()
-                .normalizeEmail(),
-            body("password", "Error Minimo debe contener la contraseña 6 carácteres")
-                .trim()
-                .isLength({min:6}),
-        ],
-        validationResultExpress,
-        login
-)
+router.post("/register", registerValidator, register);
 
-export default router
+router.post("/login", loginValidator, login);
+
+router.get("/protected", tokenHeaderValidator, requireToken, infoUser);
+router.get("/refresh", tokenCookieValidator, requireRefreshToken, refreshToken);
+
+router.get("/logout", logout);
+
+export default router;
