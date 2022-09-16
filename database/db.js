@@ -8,7 +8,7 @@ const db = new Sequelize( process.env.DATABASE,
                   })
 
 try{
-    await db.authenticate()
+    await db.sync()
     console.log("Conectado a la base de datos exitosamente...!")
   }catch(error){
     console.log("Error al conectarsea la base de dato:", error)

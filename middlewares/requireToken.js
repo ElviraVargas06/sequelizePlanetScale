@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import { User } from "../models/User";
 
 export const requireToken = (req, res, next) => {
     try {
@@ -14,3 +15,5 @@ export const requireToken = (req, res, next) => {
         return res.status(401).json({ error: error.message });
     }
 };
+
+ 

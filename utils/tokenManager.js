@@ -28,6 +28,24 @@ export const generateRefreshToken = (uid, res) => {
     }
 };
 
+export const generateOTP = () =>{
+    
+    try {
+        let otp = ''
+            for (let i = 0; i <= 3; i++){
+                const randVal = Math.round(Math.random() * 9)
+                    otp = otp + randVal
+            }    
+        return {otp};
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
+
 export const tokenVerificationErrors = {
     "invalid signature": "La firma del JWT no es válida",
     "jwt expired": "JWT expirado",

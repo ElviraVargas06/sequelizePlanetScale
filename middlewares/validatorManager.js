@@ -11,11 +11,15 @@ const validationResultExpress = (req, res, next) => {
 };
 
 export const registerValidator = [
+    body("nombre", "El nombre no puede ir vacio")
+        .trim()
+        .notEmpty()
+        .escape(),
     body("email", "Formato de email incorrecto")
         .trim()
         .isEmail()
         .normalizeEmail(),
-    body("password", "Mínimo 6 carácteres")
+    body("password", "La Contraseña debe tener Mínimo 6 carácteres")
         .trim()
         .isLength({ min: 6 }),
     body("password", "Formato de password incorrecta").custom(
@@ -34,7 +38,7 @@ export const loginValidator = [
         .trim()
         .isEmail()
         .normalizeEmail(),
-    body("password", "Mínimo 6 carácteres")
+    body("password", "La Contraseña debe tener Mínimo 6 carácteres")
         .trim()
         .isLength({ min: 6 }),
     validationResultExpress,
