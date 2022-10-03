@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { User } from "../models/User";
+//import { User } from "../models/User";
 
 export const requireToken = (req, res, next) => {
     try {
