@@ -1,17 +1,19 @@
-import {Router} from "express"
-import { login,
-    logout,
-    refreshToken,
-    register,
-    confirmarOtp
-} from "../controllers/auth.controller.js"
+import { Router } from "express";
+import {
+  login,
+  logout,
+  refreshToken,
+  register,
+  confirmarOtp,
+} from "../controllers/auth.controller.js";
 
 import { requireRefreshToken } from "../middlewares/requireRefreshToken.js";
+import { requireToken } from "../middlewares/requireToken.js";
 
 import {
-    loginValidator,
-    registerValidator,
-    tokenCookieValidator,    
+  loginValidator,
+  registerValidator,
+  tokenCookieValidator,
 } from "../middlewares/validatorManager.js";
 
 const router = Router();
