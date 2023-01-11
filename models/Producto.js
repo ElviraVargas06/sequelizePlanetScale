@@ -16,6 +16,6 @@ export const Producto = db.define("productos", {
   },
 
   imagen: {
-    type: DataTypes.BLOB,
+    type: DataTypes.STRING,
   },
 });

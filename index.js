@@ -5,7 +5,6 @@ import cors from "cors";
 import authRouter from "./routes/auth.route.js";
 import productRouter from "./routes/product.route.js";
 
-
 const app = express();
 
 const whiteList = [process.env.ORIGIN1, process.env.ORIGIN2];
