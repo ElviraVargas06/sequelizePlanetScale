@@ -32,5 +32,5 @@ app.get("/", (req, res) => {
   res.send("Bienvenido a mi API!");
 });
 
-const PORT = process.env.PORT || 6001;
+const PORT = process.env.PORT || 9000;
 app.listen(PORT, () => console.log("🌞🌞🌞🌞 http://localhost:" + PORT));
